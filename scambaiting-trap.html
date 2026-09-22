@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovisTrust Settlement - Séquestre Bancaire Sécurisé</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);
+            color: #1a1a1a;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        header {
+            background: #fff;
+            padding: 16px 24px;
+            border-bottom: 2px solid #e8e8e8;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .logo-text h1 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0f3460;
+        }
+
+        .logo-text p {
+            font-size: 11px;
+            color: #666;
+            letter-spacing: 0.5px;
+        }
+
+        .security-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: #22c55e;
+        }
+
+        .lock-icon {
+            width: 14px;
+            height: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        nav {
+            display: flex;
+            gap: 24px;
+        }
+
+        nav a {
+            color: #0f3460;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            color: #16213e;
+        }
+
+        .transaction-status {
+            background: #f0f9ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 6px;
+            padding: 12px 16px;
+            font-size: 12px;
+        }
+
+        .transaction-status .label {
+            color: #666;
+            font-weight: 500;
+        }
+
+        .transaction-status .value {
+            color: #0f3460;
+            font-weight: 600;
+            margin-top: 2px;
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 24px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            padding: 48px;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .auth-header h2 {
+            font-size: 20px;
+            color: #0f3460;
+            margin-bottom: 8px;
+        }
+
+        .auth-header p {
+            font-size: 13px;
+            color: #666;
+        }
+
+        /* Captcha Section */
+        .captcha-box {
+            border: 1px solid #e8e8e8;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 24px;
+            background: #fafafa;
+        }
+
+        .captcha-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .captcha-header label {
+            font-size: 13px;
+            font-weight: 500;
+            color: #1a1a1a;
+        }
+
+        .logo-mini {
+            font-size: 10px;
+            color: #999;
+        }
+
+        .checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: white;
+            border-radius: 6px;
+            margin-bottom: 16px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .checkbox-wrapper input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .checkbox-text {
+            font-size: 13px;
+            color: #1a1a1a;
+        }
+
+        /* Image Grid */
+        .image-grid-container {
+            display: none;
+            margin-bottom: 16px;
+        }
+
+        .image-grid-container.active {
+            display: block;
+        }
+
+        .grid-prompt {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .grid-item {
+            aspect-ratio: 1;
+            border: 2px solid #e8e8e8;
+            border-radius: 6px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+
+        .grid-item:hover {
+            border-color: #0f3460;
+            background: #f9f9f9;
+        }
+
+        .grid-item.selected {
+            border-color: #0f3460;
+            background: #e0e7ff;
+        }
+
+        .verify-btn {
+            width: 100%;
+            padding: 10px;
+            background: #0f3460;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .verify-btn:hover {
+            background: #16213e;
+        }
+
+        .verify-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        /* Loading State */
+        .loading-container {
+            display: none;
+            text-align: center;
+            margin: 32px 0;
+        }
+
+        .loading-container.active {
+            display: block;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #e8e8e8;
+            border-top: 4px solid #0f3460;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 16px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #e8e8e8;
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 12px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #0f3460 0%, #16213e 100%);
+            width: 0%;
+            animation: progress 600s linear;
+        }
+
+        @keyframes progress {
+            from { width: 5%; }
+            to { width: 95%; }
+        }
+
+        .timer {
+            font-size: 11px;
+            color: #999;
+            margin-top: 8px;
+        }
+
+        /* Error State */
+        .error-container {
+            display: none;
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .error-container.active {
+            display: block;
+        }
+
+        .error-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .error-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #dc2626;
+            margin-bottom: 4px;
+        }
+
+        .error-message {
+            font-size: 12px;
+            color: #991b1b;
+            line-height: 1.5;
+        }
+
+        .retry-note {
+            font-size: 11px;
+            color: #7f1d1d;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+
+        /* Help Modal */
+        .help-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .help-modal.active {
+            display: flex;
+        }
+
+        .help-content {
+            background: white;
+            border-radius: 12px;
+            padding: 32px;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .help-content h2 {
+            color: #0f3460;
+            margin-bottom: 16px;
+            font-size: 18px;
+        }
+
+        .help-section {
+            margin-bottom: 20px;
+        }
+
+        .help-section h3 {
+            font-size: 13px;
+            font-weight: 600;
+            color: #16213e;
+            margin-bottom: 8px;
+        }
+
+        .help-section p {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .help-section ul {
+            font-size: 12px;
+            color: #666;
+            margin-left: 20px;
+            margin-top: 8px;
+        }
+
+        .help-section li {
+            margin-bottom: 6px;
+            line-height: 1.5;
+        }
+
+        .close-modal {
+            background: #0f3460;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            margin-top: 16px;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: #888;
+            padding: 24px;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .footer-links {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #888;
+            text-decoration: none;
+            margin: 0 12px;
+            cursor: pointer;
+        }
+
+        .footer-links a:hover {
+            color: #aaa;
+        }
+
+        .legal-text {
+            color: #666;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <div class="logo-icon">⬡</div>
+                <div class="logo-text">
+                    <h1>NovisTrust Settlement</h1>
+                    <p>SERVICES DE SÉQUESTRE CERTIFIÉS ISO 27001</p>
+                </div>
+            </div>
+            <nav>
+                <a>Services Pro</a>
+                <a>Séquestre & Garanties</a>
+                <a>Mon Compte</a>
+            </nav>
+            <div class="security-badge">
+                <div class="lock-icon">🔒</div>
+                256-bit TLS Encrypted
+            </div>
+        </div>
+    </header>
+
+    <div class="transaction-status">
+        <div class="header-container">
+            <div style="flex: 1;">
+                <div class="label">Transaction #NV-884920 — Montant bloqué : 100,00 € — Statut :</div>
+                <div class="value">⏳ En attente d'authentification destinataire</div>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <div class="container">
+            <div class="auth-header">
+                <h2>Authentification Requise</h2>
+                <p>Veuillez confirmer votre identité pour débloquer le virement</p>
+            </div>
+
+            <div class="error-container" id="errorContainer">
+                <div class="error-icon">⚠️</div>
+                <div class="error-title">Erreur de Validation</div>
+                <div class="error-message" id="errorMessage"></div>
+                <div class="retry-note">Recommencez le test d'intégrité ci-dessous.</div>
+            </div>
+
+            <div class="captcha-box" id="captchaBox">
+                <div class="captcha-header">
+                    <label>Vérification de Sécurité</label>
+                    <span class="logo-mini">NovisTrust v3.2</span>
+                </div>
+
+                <div class="checkbox-wrapper" id="checkboxWrapper">
+                    <input type="checkbox" id="robotCheckbox">
+                    <span class="checkbox-text">Je ne suis pas un robot</span>
+                </div>
+
+                <div class="image-grid-container" id="imageGridContainer">
+                    <div class="grid-prompt" id="gridPrompt">Sélectionnez toutes les images contenant une borne d'incendie</div>
+                    <div class="image-grid" id="imageGrid"></div>
+                    <button class="verify-btn" id="verifyBtn">Vérifier</button>
+                </div>
+            </div>
+
+            <div class="loading-container" id="loadingContainer">
+                <div class="loading-spinner"></div>
+                <div class="loading-text" id="loadingText">Analyse télémétrique en cours...</div>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <div class="timer"><span id="timerText">09:58</span> restantes</div>
+            </div>
+        </div>
+    </main>
+
+    <div class="help-modal" id="helpModal">
+        <div class="help-content">
+            <h2>Guide d'Assistance Rapide</h2>
+            
+            <div class="help-section">
+                <h3>Si le délai dépasse 600 secondes</h3>
+                <p>Assurez-vous de cligner des yeux face à votre écran au moins trois fois par minute. Ne pas cligner peut déclencher le mode de veille anti-fraude du système.</p>
+            </div>
+
+            <div class="help-section">
+                <h3>Ne fermez JAMAIS l'onglet</h3>
+                <p>Fermer cet onglet entraînera le gel définitif de vos 100,00 € et l'activation d'un audit de conformité de 48 heures.</p>
+            </div>
+
+            <div class="help-section">
+                <h3>En cas d'erreur de token biométrique</h3>
+                <p>Redémarrez votre routeur trois fois en appuyant sur le bouton reset pendant 10 secondes à chaque fois. Attendez 2 minutes entre chaque redémarrage.</p>
+            </div>
+
+            <div class="help-section">
+                <h3>Anomalie de synchronisation interbancaire</h3>
+                <p>Si le système affiche une erreur 0x8004100E, videz le cache de votre navigateur, puis redémarrez votre appareil complètement. Une resynchronisation peut prendre jusqu'à 15 minutes.</p>
+            </div>
+
+            <div class="help-section">
+                <h3>Vérification d'intégrité bloquée</h3>
+                <p>Les grilles d'images utilisent la reconnaissance biométrique avancée. Sélectionnez uniquement les images où vous êtes absolument certain qu'il s'agit du sujet demandé.</p>
+            </div>
+
+            <div class="help-section">
+                <h3>Problèmes de connectivité</h3>
+                <ul>
+                    <li>Assurez-vous que votre horloge système est synchronisée (dérive acceptée : ±2 secondes max)</li>
+                    <li>Désactivez les VPN ou proxies (ils bloquent la validation inter-domaines)</li>
+                    <li>Vérifiez que votre navigateur supporte les cookies tiers</li>
+                </ul>
+            </div>
+
+            <button class="close-modal" onclick="document.getElementById('helpModal').classList.remove('active')">Fermer</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a onclick="document.getElementById('helpModal').classList.add('active')">Centre d'Aide</a>
+            <a>Mentions Légales</a>
+            <a>Politique de Confidentialité</a>
+            <a>Contact Support</a>
+        </div>
+        <div class="legal-text">
+            NovisTrust Settlement — Enregistré auprès de l'ACNF (Autorité de Conformité Numérique Fédérée)<br>
+            Certifié ISO 27001:2022 | Conformité RGPD | Audit annuel obligatoire<br>
+            © 2024 NovisTrust Inc. Tous droits réservés.
+        </div>
+    </footer>
+
+    <script>
+        const robotCheckbox = document.getElementById('robotCheckbox');
+        const imageGridContainer = document.getElementById('imageGridContainer');
+        const imageGrid = document.getElementById('imageGrid');
+        const gridPrompt = document.getElementById('gridPrompt');
+        const verifyBtn = document.getElementById('verifyBtn');
+        const loadingContainer = document.getElementById('loadingContainer');
+        const captchaBox = document.getElementById('captchaBox');
+        const errorContainer = document.getElementById('errorContainer');
+        const errorMessage = document.getElementById('errorMessage');
+        const loadingText = document.getElementById('loadingText');
+        const timerText = document.getElementById('timerText');
+
+        const fireHydrantEmojis = ['🔴', '🚨', '🔧', '🪣'];
+        const randomEmojis = ['🌟', '🎨', '📱', '🎭', '🏠', '⚽', '🎪', '🎯'];
+
+        let gridItems = [];
+        let selectedItems = [];
+        let loadingTimeout;
+
+        function generateCaptcha() {
+            imageGrid.innerHTML = '';
+            selectedItems = [];
+            gridItems = [];
+
+            const prompts = [
+                'Sélectionnez toutes les images contenant une borne d\'incendie',
+                'Sélectionnez tous les feux tricolores',
+                'Cliquez sur les images avec des panneaux de signalisation',
+                'Identifiez les véhicules d\'urgence',
+                'Sélectionnez les images contenant de l\'eau'
+            ];
+
+            gridPrompt.textContent = prompts[Math.floor(Math.random() * prompts.length)];
+
+            // 50/50 : images pertinentes ou texte illisible
+            if (Math.random() > 0.5) {
+                for (let i = 0; i < 9; i++) {
+                    const isFireHydrant = i < 2;
+                    const emoji = isFireHydrant ? fireHydrantEmojis[Math.floor(Math.random() * fireHydrantEmojis.length)] : randomEmojis[Math.floor(Math.random() * randomEmojis.length)];
+                    
+                    const item = document.createElement('div');
+                    item.className = 'grid-item';
+                    item.textContent = emoji;
+                    item.dataset.correct = isFireHydrant;
+                    item.onclick = () => toggleItem(item);
+                    
+                    imageGrid.appendChild(item);
+                    gridItems.push(item);
+                }
+            } else {
+                // Texte déformé illisible
+                for (let i = 0; i < 9; i++) {
+                    const item = document.createElement('div');
+                    item.className = 'grid-item';
+                    item.style.fontSize = '16px';
+                    item.style.letterSpacing = '8px';
+                    item.style.color = '#ccc';
+                    item.style.fontWeight = '900';
+                    item.style.fontStyle = 'italic';
+                    item.style.transform = 'rotate(' + (Math.random() * 40 - 20) + 'deg)';
+                    item.textContent = Math.random().toString(36).substring(2, 8);
+                    item.dataset.correct = Math.random() > 0.7;
+                    item.onclick = () => toggleItem(item);
+                    
+                    imageGrid.appendChild(item);
+                    gridItems.push(item);
+                }
+            }
+        }
+
+        function toggleItem(item) {
+            item.classList.toggle('selected');
+            if (item.classList.contains('selected')) {
+                selectedItems.push(item);
+            } else {
+                selectedItems = selectedItems.filter(i => i !== item);
+            }
+        }
+
+        robotCheckbox.addEventListener('change', () => {
+            if (robotCheckbox.checked) {
+                imageGridContainer.classList.add('active');
+                generateCaptcha();
+            } else {
+                imageGridContainer.classList.remove('active');
+                selectedItems = [];
+            }
+        });
+
+        verifyBtn.addEventListener('click', () => {
+            captchaBox.style.display = 'none';
+            loadingContainer.classList.add('active');
+            robotCheckbox.checked = false;
+            imageGridContainer.classList.remove('active');
+
+            startLoadingSequence();
+        });
+
+        function startLoadingSequence() {
+            const messages = [
+                'Analyse télémétrique en cours...',
+                'Synchronisation interbancaire...',
+                'Validation de signature numérique...',
+                'Vérification d\'intégrité cryptographique...',
+                'Scan anti-anomalies biométriques...',
+                'Attente de confirmation du serveur maître...'
+            ];
+
+            let messageIndex = 0;
+            let elapsed = 0;
+            const minSeconds = 7 * 60 + 53; // 473 s
+            const maxSeconds = 10 * 60 + 28; // 628 s
+
+            // Durée aléatoire en secondes (nombre entier)
+            const totalTime = Math.floor(Math.random() * (maxSeconds - minSeconds + 1)) + minSeconds;
+
+            const loadingInterval = setInterval(() => {
+                elapsed += 1;
+                const remaining = totalTime - elapsed;
+                const minutes = Math.floor(remaining / 60);
+                const seconds = remaining % 60;
+                timerText.textContent = String(minutes).padStart(2, '0') + ':' + String(seconds).padStart(2, '0');
+
+                if (elapsed % 30 === 0 && messageIndex < messages.length) {
+                    loadingText.textContent = messages[messageIndex];
+                    messageIndex++;
+                }
+
+                if (elapsed >= totalTime) {
+                    clearInterval(loadingInterval);
+                    showError();
+                }
+            }, 1000);
+        }
+
+        function showError() {
+            loadingContainer.classList.remove('active');
+            captchaBox.style.display = 'block';
+            errorContainer.classList.add('active');
+
+            const errors = [
+                'Erreur 0x8004100E : Délai de validation dépassé. Vérification biométrique expirée.',
+                'Erreur de synchronisation : Le serveur maître a détecté une anomalie de token. Recommencez.',
+                'Erreur 0x1A7F2 : Délai inter-domaines dépassé. Redémarrez votre dispositif et réessayez.',
+                'Erreur de conformité : Anomalie d\'horloge détectée (dérive > 2 secondes).'
+            ];
+
+            errorMessage.textContent = errors[Math.floor(Math.random() * errors.length)];
+
+            // Reset the captcha
+            robotCheckbox.checked = false;
+            imageGridContainer.classList.remove('active');
+            generateCaptcha();
+
+            // Auto-hide error after 5 seconds
+            setTimeout(() => {
+                errorContainer.classList.remove('active');
+            }, 5000);
+        }
+
+        // Initialize first captcha
+        generateCaptcha();
+    </script>
+</body>
+</html>
