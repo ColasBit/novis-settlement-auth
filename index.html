@@ -626,50 +626,121 @@
         let gridItems = [];
         let selectedItems = [];
         let loadingTimeout;
+        let captchaStage = 0; // 0 = premier captcha, 1 = captcha après chargement 1, etc.
+        const LOADING_TIME = getRandomLoadingTime(); // 600 secondes = 10 minutes (changez à 30 pour tester rapidement)
+
+        const captchaSequence = [
+            {
+                prompt: 'Sélectionnez toutes les images contenant une borne d\'incendie',
+                type: 'emoji',
+                targets: ['🔴', '🚨']
+            },
+            {
+                prompt: 'Cliquez uniquement sur les chiffres pairs',
+                type: 'digits',
+                targets: ['0', '2', '4', '6', '8']
+            },
+            {
+                prompt: 'Sélectionnez les images montrant un moyen de transport',
+                type: 'emoji',
+                targets: ['🚗', '🚕', '✈️', '🚂', '🚢']
+            },
+            {
+                prompt: 'Trouvez toutes les voyelles de l\'alphabet latin',
+                type: 'letters',
+                targets: ['A', 'E', 'I', 'O', 'U']
+            },
+            {
+                prompt: 'Identifiez les symboles mathématiques',
+                type: 'symbols',
+                targets: ['+', '-', '×', '÷', '=']
+            },
+            {
+                prompt: 'Sélectionnez les images contenant un aliment',
+                type: 'emoji',
+                targets: ['🍎', '🍕', '🍔', '🌮', '🍜']
+            }
+        ];
 
         function generateCaptcha() {
             imageGrid.innerHTML = '';
             selectedItems = [];
             gridItems = [];
 
-            const prompts = [
-                'Sélectionnez toutes les images contenant une borne d\'incendie',
-                'Sélectionnez tous les feux tricolores',
-                'Cliquez sur les images avec des panneaux de signalisation',
-                'Identifiez les véhicules d\'urgence',
-                'Sélectionnez les images contenant de l\'eau'
-            ];
+            const captcha = captchaSequence[captchaStage % captchaSequence.length];
+            gridPrompt.textContent = captcha.prompt;
 
-            gridPrompt.textContent = prompts[Math.floor(Math.random() * prompts.length)];
-
-            // 50/50 : images pertinentes ou texte illisible
-            if (Math.random() > 0.5) {
+            if (captcha.type === 'emoji') {
+                // Générer des emojis : certains cibles, d'autres non
+                const allEmojis = [...captcha.targets, ...randomEmojis];
+                const displayEmojis = [];
                 for (let i = 0; i < 9; i++) {
-                    const isFireHydrant = i < 2;
-                    const emoji = isFireHydrant ? fireHydrantEmojis[Math.floor(Math.random() * fireHydrantEmojis.length)] : randomEmojis[Math.floor(Math.random() * randomEmojis.length)];
+                    const isTarget = i < 2; // 2 bonnes réponses parmi 9
+                    const emoji = isTarget ? captcha.targets[Math.floor(Math.random() * captcha.targets.length)] : randomEmojis[Math.floor(Math.random() * randomEmojis.length)];
+                    displayEmojis.push(emoji);
+                }
+
+                for (let i = 0; i < 9; i++) {
+                    const emoji = displayEmojis[i];
+                    const isCorrect = captcha.targets.includes(emoji);
                     
                     const item = document.createElement('div');
                     item.className = 'grid-item';
                     item.textContent = emoji;
-                    item.dataset.correct = isFireHydrant;
+                    item.dataset.correct = isCorrect;
                     item.onclick = () => toggleItem(item);
                     
                     imageGrid.appendChild(item);
                     gridItems.push(item);
                 }
-            } else {
-                // Texte déformé illisible
+            } else if (captcha.type === 'digits') {
+                // Générer des chiffres mélangés
+                const allDigits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
                 for (let i = 0; i < 9; i++) {
+                    const digit = allDigits[Math.floor(Math.random() * allDigits.length)];
+                    const isCorrect = captcha.targets.includes(digit);
+                    
                     const item = document.createElement('div');
                     item.className = 'grid-item';
-                    item.style.fontSize = '16px';
-                    item.style.letterSpacing = '8px';
-                    item.style.color = '#ccc';
-                    item.style.fontWeight = '900';
-                    item.style.fontStyle = 'italic';
-                    item.style.transform = 'rotate(' + (Math.random() * 40 - 20) + 'deg)';
-                    item.textContent = Math.random().toString(36).substring(2, 8);
-                    item.dataset.correct = Math.random() > 0.7;
+                    item.textContent = digit;
+                    item.dataset.correct = isCorrect;
+                    item.style.fontSize = '24px';
+                    item.onclick = () => toggleItem(item);
+                    
+                    imageGrid.appendChild(item);
+                    gridItems.push(item);
+                }
+            } else if (captcha.type === 'letters') {
+                // Générer des lettres
+                const allLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+                for (let i = 0; i < 9; i++) {
+                    const letter = allLetters[Math.floor(Math.random() * allLetters.length)];
+                    const isCorrect = captcha.targets.includes(letter);
+                    
+                    const item = document.createElement('div');
+                    item.className = 'grid-item';
+                    item.textContent = letter;
+                    item.dataset.correct = isCorrect;
+                    item.style.fontSize = '20px';
+                    item.onclick = () => toggleItem(item);
+                    
+                    imageGrid.appendChild(item);
+                    gridItems.push(item);
+                }
+            } else if (captcha.type === 'symbols') {
+                // Générer des symboles mélangés avec d'autres caractères
+                const otherSymbols = ['§', '¶', '†', '‡', '•', '◆', '◊', '★', '☆', '※', '%', '&', '@'];
+                const allSymbols = [...captcha.targets, ...otherSymbols];
+                
+                for (let i = 0; i < 9; i++) {
+                    const symbol = allSymbols[Math.floor(Math.random() * allSymbols.length)];
+                    const isCorrect = captcha.targets.includes(symbol);
+                    
+                    const item = document.createElement('div');
+                    item.className = 'grid-item';
+                    item.textContent = symbol;
+                    item.dataset.correct = isCorrect;
+                    item.style.fontSize = '22px';
                     item.onclick = () => toggleItem(item);
                     
                     imageGrid.appendChild(item);
@@ -718,15 +789,10 @@
 
             let messageIndex = 0;
             let elapsed = 0;
-            const minSeconds = 7 * 60 + 53; // 473 s
-            const maxSeconds = 10 * 60 + 28; // 628 s
-
-            // Durée aléatoire en secondes (nombre entier)
-            const totalTime = Math.floor(Math.random() * (maxSeconds - minSeconds + 1)) + minSeconds;
 
             const loadingInterval = setInterval(() => {
                 elapsed += 1;
-                const remaining = totalTime - elapsed;
+                const remaining = LOADING_TIME - elapsed;
                 const minutes = Math.floor(remaining / 60);
                 const seconds = remaining % 60;
                 timerText.textContent = String(minutes).padStart(2, '0') + ':' + String(seconds).padStart(2, '0');
@@ -736,11 +802,30 @@
                     messageIndex++;
                 }
 
-                if (elapsed >= totalTime) {
+                if (elapsed >= LOADING_TIME) {
                     clearInterval(loadingInterval);
-                    showError();
+                    // Après le premier ou deuxième captcha : nouveau captcha
+                    // Après le 3e captcha : erreur et recommencer la boucle
+                    if (captchaStage < 2) {
+                        showNextCaptcha();
+                    } else {
+                        showError();
+                    }
                 }
             }, 1000);
+        }
+
+        function showNextCaptcha() {
+            loadingContainer.classList.remove('active');
+            errorContainer.classList.remove('active');
+            
+            captchaStage++;
+            generateCaptcha();
+            
+            // Réinitialiser l'état du captcha
+            robotCheckbox.checked = false;
+            imageGridContainer.classList.remove('active');
+            captchaBox.style.display = 'block';
         }
 
         function showError() {
@@ -752,23 +837,33 @@
                 'Erreur 0x8004100E : Délai de validation dépassé. Vérification biométrique expirée.',
                 'Erreur de synchronisation : Le serveur maître a détecté une anomalie de token. Recommencez.',
                 'Erreur 0x1A7F2 : Délai inter-domaines dépassé. Redémarrez votre dispositif et réessayez.',
-                'Erreur de conformité : Anomalie d\'horloge détectée (dérive > 2 secondes).'
+                'Erreur de conformité : Anomalie d\'horloge détectée (dérive > 2 secondes).',
+                'Erreur 0xC0FFEE : Impossible de synchroniser la chaîne de confiance. Veuillez réessayer.'
             ];
 
             errorMessage.textContent = errors[Math.floor(Math.random() * errors.length)];
 
-            // Reset the captcha
+            // Reset pour recommencer la boucle complète
+            captchaStage = 0;
+            generateCaptcha();
             robotCheckbox.checked = false;
             imageGridContainer.classList.remove('active');
-            generateCaptcha();
 
-            // Auto-hide error after 5 seconds
+            // Auto-hide error après 5 secondes
             setTimeout(() => {
                 errorContainer.classList.remove('active');
-            }, 5000);
+            },5000);
+        }
+
+        function getRandomLoadingTime() {
+            // Entre 7min28 (448s) et 10min52 (652s)
+            const minSeconds = 7 * 60 + 28; // 448
+            const maxSeconds = 10 * 60 + 52; // 652
+            return Math.floor(Math.random() * (maxSeconds - minSeconds + 1)) + minSeconds;
         }
 
         // Initialize first captcha
+        captchaStage = 0;
         generateCaptcha();
     </script>
 </body>
