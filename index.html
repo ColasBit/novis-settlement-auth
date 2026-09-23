@@ -539,9 +539,9 @@
                 </div>
             </div>
             <nav>
-                <a>Pourquoi SafeFreelance</a>
-                <a>Tarifs</a>
-                <a>Support</a>
+                <a onclick="openModal('whyModal')">Pourquoi SafeFreelance</a>
+                <a onclick="openModal('pricingModal')">Tarifs</a>
+                <a onclick="openModal('supportModal')">Support</a>
             </nav>
             <div class="security-badge">
                 🔒 ISO 27001 Certifié
@@ -598,6 +598,138 @@
             </div>
         </div>
     </main>
+
+    <!-- Modal: Pourquoi SafeFreelance -->
+    <div class="help-modal" id="whyModal">
+        <div class="help-content">
+            <h2>Pourquoi SafeFreelance ?</h2>
+            
+            <div class="help-section">
+                <h3>Protection pour les deux parties</h3>
+                <p>SafeFreelance bloque les fonds jusqu'à ce que le travail soit complété et validé. Les clients et les freelancers sont protégés contre les litiges.</p>
+            </div>
+
+            <div class="help-section">
+                <h3>Sécurité bancaire</h3>
+                <p>Tous les fonds sont conservés sur des comptes séquestre certifiés ISO 27001. Les transactions sont chiffrées de bout en bout.</p>
+            </div>
+
+            <div class="help-section">
+                <h3>Conformité réglementaire</h3>
+                <p>SafeFreelance est agréée par les autorités financières européennes et conforme au RGPD et à la directive PSD2.</p>
+            </div>
+
+            <div class="help-section">
+                <h3>Résolution de litiges</h3>
+                <p>En cas de désaccord, notre équipe d'arbitrage intervient gratuitement pour protéger les deux parties.</p>
+            </div>
+
+            <button class="close-modal" onclick="closeModal('whyModal')">Fermer</button>
+        </div>
+    </div>
+
+    <!-- Modal: Tarifs -->
+    <div class="help-modal" id="pricingModal">
+        <div class="help-content">
+            <h2>Tarifs SafeFreelance</h2>
+            
+            <div class="help-section">
+                <h3>Frais de Séquestre</h3>
+                <p><strong>1,9% + 0,30 €</strong> par transaction (à charge du client)</p>
+            </div>
+
+            <div class="help-section">
+                <h3>Frais de Retrait</h3>
+                <p><strong>Gratuit</strong> pour les virements SEPA (1-2 jours ouvrables)</p>
+            </div>
+
+            <div class="help-section">
+                <h3>Frais de Dispute</h3>
+                <p><strong>Gratuit</strong> — L'arbitrage SafeFreelance est inclus dans votre compte</p>
+            </div>
+
+            <div class="help-section">
+                <h3>Plans Entreprise</h3>
+                <p>Volumes importants ? Nous proposons des tarifs réduits à partir de 50 transactions/mois. Contactez notre équipe commerciale.</p>
+            </div>
+
+            <div class="help-section">
+                <h3>Garantie de Satisfaction</h3>
+                <p>Remboursement intégral des frais si vous n'êtes pas satisfait dans les 30 jours suivant votre première transaction.</p>
+            </div>
+
+            <button class="close-modal" onclick="closeModal('pricingModal')">Fermer</button>
+        </div>
+    </div>
+
+    <!-- Modal: Support -->
+    <div class="help-modal" id="supportModal">
+        <div class="help-content">
+            <h2>Support SafeFreelance</h2>
+            
+            <div class="help-section">
+                <h3>Centre d'Aide</h3>
+                <p>Consultez notre documentation complète : guides, FAQ, tutoriels vidéo et articles de dépannage.</p>
+            </div>
+
+            <div class="help-section">
+                <h3>Chat en Direct</h3>
+                <p>Notre équipe support répond en français, anglais et espagnol. Temps de réponse moyen : 2-5 minutes.</p>
+            </div>
+
+            <div class="help-section">
+                <h3>Email Support</h3>
+                <p>support@safefreelance.com — Réponse garantie sous 24h pour les questions complexes.</p>
+            </div>
+
+            <div class="help-section">
+                <h3>Formulaire de Contact</h3>
+                <p>Avez-vous une question spécifique ? <a onclick="closeModal('supportModal'); openModal('contactModal'); return false;" style="color: #2563eb; font-weight: 600; cursor: pointer;">Remplissez notre formulaire de contact sécurisé</a> et nous vous répondrons rapidement.</p>
+            </div>
+
+            <button class="close-modal" onclick="closeModal('supportModal')">Fermer</button>
+        </div>
+    </div>
+
+    <!-- Modal: Contact avec CAPTCHA BONUS 😈 -->
+    <div class="help-modal" id="contactModal">
+        <div class="help-content" style="max-width: 500px;">
+            <h2>Formulaire de Contact</h2>
+            
+            <div class="help-section" style="border-bottom: none;">
+                <p style="font-size: 11px; color: #666; margin-bottom: 12px;">Pour vous contacter, veuillez compléter la vérification de sécurité ci-dessous.</p>
+            </div>
+
+            <div style="border: 1px solid #e0e4e8; border-radius: 6px; padding: 12px; margin-bottom: 12px; background: #fafbfc;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <label style="font-size: 12px; font-weight: 600; color: #1a1a1a; text-transform: uppercase; letter-spacing: 0.5px;">Vérification de Sécurité</label>
+                    <span style="font-size: 10px; color: #999;">v4.3.2</span>
+                </div>
+
+                <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 4px; border: 1px solid #e0e4e8; cursor: pointer; user-select: none; margin-bottom: 10px;" id="contactCheckboxWrapper">
+                    <input type="checkbox" id="contactCheckbox" style="width: 16px; height: 16px; accent-color: #2563eb; cursor: pointer;">
+                    <span style="font-size: 12px; color: #1a1a1a; font-weight: 500;">Je suis un utilisateur autorisé</span>
+                </div>
+
+                <div id="contactGridContainer" style="display: none;">
+                    <div style="font-size: 11px; color: #555; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px;" id="contactGridPrompt"></div>
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 10px;" id="contactCharGrid"></div>
+                    <button style="width: 100%; padding: 8px; background: #1e3a8a; color: white; border: none; border-radius: 4px; font-size: 11px; font-weight: 600; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s;" id="contactVerifyBtn" onmouseover="this.style.background='#1e40af'" onmouseout="this.style.background='#1e3a8a'">Vérifier</button>
+                </div>
+
+                <div id="contactLoadingContainer" style="display: none; text-align: center; margin: 20px 0;">
+                    <div style="width: 32px; height: 32px; border: 3px solid #e0e4e8; border-top: 3px solid #1e3a8a; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 10px;"></div>
+                    <div style="font-size: 11px; color: #555; margin-bottom: 6px; font-weight: 500;" id="contactLoadingText">Traitement en cours...</div>
+                    <div style="width: 100%; height: 3px; background: #e0e4e8; border-radius: 2px; overflow: hidden; margin: 8px 0;">
+                        <div style="height: 100%; background: linear-gradient(90deg, #1e3a8a 0%, #2563eb 100%); width: 0%; animation: progress 0s linear;"></div>
+                    </div>
+                    <div style="font-size: 11px; color: #666; font-weight: 600;"><span id="contactTimerText">00:00</span> restantes</div>
+                </div>
+            </div>
+
+            <button class="close-modal" onclick="closeModal('contactModal')">Fermer</button>
+        </div>
+    </div>
 
     <div class="help-modal" id="helpModal">
         <div class="help-content">
@@ -882,6 +1014,196 @@
         // Initialize
         captchaStage = 0;
         generateCaptcha();
+
+        // ========== MODAL FUNCTIONS ==========
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        // Close modal on outside click
+        document.querySelectorAll('.help-modal').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                }
+            });
+        });
+
+        // ========== CONTACT FORM CAPTCHA ==========
+        const contactCheckbox = document.getElementById('contactCheckbox');
+        const contactGridContainer = document.getElementById('contactGridContainer');
+        const contactCharGrid = document.getElementById('contactCharGrid');
+        const contactGridPrompt = document.getElementById('contactGridPrompt');
+        const contactVerifyBtn = document.getElementById('contactVerifyBtn');
+        const contactLoadingContainer = document.getElementById('contactLoadingContainer');
+        const contactLoadingText = document.getElementById('contactLoadingText');
+        const contactTimerText = document.getElementById('contactTimerText');
+
+        let contactGridItems = [];
+        let contactSelectedItems = [];
+        let contactCaptchaStage = 0;
+
+        function generateContactCaptcha() {
+            contactCharGrid.innerHTML = '';
+            contactSelectedItems = [];
+            contactGridItems = [];
+
+            const captcha = captchaSequence[contactCaptchaStage % captchaSequence.length];
+            contactGridPrompt.textContent = captcha.prompt;
+
+            const displayChars = [];
+            
+            if (captcha.type === 'alphanumeric') {
+                const allDigits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+                for (let i = 0; i < 4; i++) {
+                    displayChars.push(captcha.targets[Math.floor(Math.random() * captcha.targets.length)]);
+                }
+                for (let i = 0; i < 12; i++) {
+                    displayChars.push(allDigits[Math.floor(Math.random() * allDigits.length)]);
+                }
+            } else if (captcha.type === 'numeric') {
+                const oddNumbers = ['1', '3', '5', '7', '9'];
+                for (let i = 0; i < 4; i++) {
+                    displayChars.push(captcha.targets[Math.floor(Math.random() * captcha.targets.length)]);
+                }
+                for (let i = 0; i < 12; i++) {
+                    displayChars.push(oddNumbers[Math.floor(Math.random() * oddNumbers.length)]);
+                }
+            } else if (captcha.type === 'symbols') {
+                const otherSymbols = ['@', '#', '%', '!', '&', '^', '(', ')', '§', '¶', '†', '‡'];
+                for (let i = 0; i < 4; i++) {
+                    displayChars.push(captcha.targets[Math.floor(Math.random() * captcha.targets.length)]);
+                }
+                for (let i = 0; i < 12; i++) {
+                    displayChars.push(otherSymbols[Math.floor(Math.random() * otherSymbols.length)]);
+                }
+            } else if (captcha.type === 'special') {
+                const otherSymbols = ['€', '$', '¥', '£', '₹', '©', '®', '™', '•', '°', '±', '÷'];
+                for (let i = 0; i < 4; i++) {
+                    displayChars.push(captcha.targets[Math.floor(Math.random() * captcha.targets.length)]);
+                }
+                for (let i = 0; i < 12; i++) {
+                    displayChars.push(otherSymbols[Math.floor(Math.random() * otherSymbols.length)]);
+                }
+            } else if (captcha.type === 'uppercase') {
+                const lowercase = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p'];
+                for (let i = 0; i < 4; i++) {
+                    displayChars.push(captcha.targets[Math.floor(Math.random() * captcha.targets.length)]);
+                }
+                for (let i = 0; i < 12; i++) {
+                    displayChars.push(lowercase[Math.floor(Math.random() * lowercase.length)]);
+                }
+            }
+
+            displayChars.sort(() => Math.random() - 0.5);
+
+            for (let i = 0; i < 16; i++) {
+                const char = displayChars[i];
+                const isCorrect = captcha.targets.includes(char);
+                
+                const item = document.createElement('div');
+                item.className = 'grid-item';
+                item.style.fontSize = '14px';
+                item.textContent = char;
+                item.dataset.correct = isCorrect;
+                item.onclick = () => toggleContactItem(item);
+                
+                contactCharGrid.appendChild(item);
+                contactGridItems.push(item);
+            }
+        }
+
+        function toggleContactItem(item) {
+            item.classList.toggle('selected');
+            if (item.classList.contains('selected')) {
+                contactSelectedItems.push(item);
+            } else {
+                contactSelectedItems = contactSelectedItems.filter(i => i !== item);
+            }
+        }
+
+        contactCheckbox.addEventListener('change', () => {
+            if (contactCheckbox.checked) {
+                contactGridContainer.style.display = 'block';
+                generateContactCaptcha();
+            } else {
+                contactGridContainer.style.display = 'none';
+                contactSelectedItems = [];
+            }
+        });
+
+        contactVerifyBtn.addEventListener('click', () => {
+            contactGridContainer.style.display = 'none';
+            contactLoadingContainer.style.display = 'block';
+            contactCheckbox.checked = false;
+
+            startContactLoadingSequence();
+        });
+
+        function startContactLoadingSequence() {
+            const messages = [
+                'Traitement du formulaire...',
+                'Validation des données...',
+                'Chiffrement de la transmission...',
+                'Routage vers l\'équipe support...',
+                'Attente de confirmation...'
+            ];
+
+            const LOADING_TIME = getRandomLoadingTime();
+            let messageIndex = 0;
+            let elapsed = 0;
+
+            const loadingInterval = setInterval(() => {
+                elapsed += 1;
+                const remaining = LOADING_TIME - elapsed;
+                const minutes = Math.floor(remaining / 60);
+                const seconds = remaining % 60;
+                contactTimerText.textContent = String(minutes).padStart(2, '0') + ':' + String(seconds).padStart(2, '0');
+
+                if (elapsed % 25 === 0 && messageIndex < messages.length) {
+                    contactLoadingText.textContent = messages[messageIndex];
+                    messageIndex++;
+                }
+
+                if (elapsed >= LOADING_TIME) {
+                    clearInterval(loadingInterval);
+                    if (contactCaptchaStage < 2) {
+                        showNextContactCaptcha();
+                    } else {
+                        showContactError();
+                    }
+                }
+            }, 1000);
+        }
+
+        function showNextContactCaptcha() {
+            contactLoadingContainer.style.display = 'none';
+            contactCaptchaStage++;
+            generateContactCaptcha();
+            contactCheckbox.checked = false;
+            contactGridContainer.style.display = 'block';
+        }
+
+        function showContactError() {
+            contactLoadingContainer.style.display = 'none';
+            contactCaptchaStage = 0;
+            generateContactCaptcha();
+            contactCheckbox.checked = false;
+            contactGridContainer.style.display = 'block';
+
+            const errorMsg = document.createElement('div');
+            errorMsg.style.cssText = 'background: #fef2f2; border: 1px solid #fecaca; border-radius: 4px; padding: 10px; margin-bottom: 10px; font-size: 11px; color: #991b1b;';
+            errorMsg.innerHTML = '<strong>⚠️ Erreur :</strong> Impossible de transmettre le formulaire. Veuillez réessayer.';
+            contactGridContainer.parentElement.insertBefore(errorMsg, contactGridContainer);
+
+            setTimeout(() => {
+                errorMsg.remove();
+            }, 4000);
+        }
     </script>
 </body>
 </html>
