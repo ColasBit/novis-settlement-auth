@@ -207,7 +207,7 @@ const Views = {
 
     shop(data, state) {
         const productsHtml = data.products.map(prod => `
-            <article class="media-card">
+            <article class="media-card" style="${!prod.isAvailable ? 'opacity: 0.7;' : ''}">
                 <img src="${prod.img}" alt="${prod.name}" class="media-card-img">
                 <div class="media-card-body">
                     <div>
@@ -215,66 +215,34 @@ const Views = {
                         <h3>${prod.name}</h3>
                         <p>${prod.desc}</p>
                     </div>
-                    <div style="margin-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1rem; display: flex; justify-content: space-between; align-items: center;">
-                        <strong style="font-size: 1.25rem; color: #fff; font-family: var(--font-mono);">${prod.price.toFixed(2)} €</strong>
-                        <button class="cta-btn" data-add-cart="${prod.id}" style="padding: 0.5rem 1rem; font-size: 0.85rem;">
-                            + Ajouter
-                        </button>
+                    <div style="margin-top: 1rem; border-top: 1px solid var(--border-light); padding-top: 1rem; display: flex; justify-content: space-between; align-items: center;">
+                        <strong style="font-size: 1.25rem; color: var(--text-main); font-family: var(--font-mono);">${prod.price.toFixed(2)} €</strong>
+                        
+                        ${prod.isAvailable ? `
+                            <a href="${prod.paymentLink}" target="_blank" class="cta-btn" style="padding: 0.5rem 1rem; font-size: 0.85rem; text-decoration: none;">
+                                Acheter →
+                            </a>
+                        ` : `
+                            <span class="badge" style="background: rgba(172,0,0,0.15); color: var(--tuf-red); border-color: var(--tuf-red); margin-bottom: 0; padding: 0.5rem 1rem;">
+                                ÉPUISÉ
+                            </span>
+                        `}
                     </div>
                 </div>
             </article>
         `).join('');
 
-        const subTotal = state.cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-        const shipping = state.cart.length > 0 ? data.shippingFlatRate : 0;
-        const grandTotal = subTotal + shipping;
-
-        const cartItemsHtml = state.cart.length === 0
-            ? `<p style="font-family: var(--font-mono); font-size: 0.85rem;">Votre panier est vide.</p>`
-            : state.cart.map(item => `
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; border-bottom: 1px dashed rgba(255,255,255,0.1); padding-bottom: 0.5rem;">
-                    <div>
-                        <strong style="color: #fff; font-size: 0.9rem;">${item.name}</strong><br>
-                        <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--neon-cyan);">
-                            ${item.qty} x ${item.price.toFixed(2)} €
-                        </span>
-                    </div>
-                    <button class="nav-btn" data-remove-cart="${item.id}" style="padding: 0.25rem 0.6rem; font-size: 0.75rem;">✕</button>
-                </div>
-            `).join('');
-
         return `
             <section class="hero-box">
                 <span class="badge">${data.badge}</span>
                 <h2>${data.title}</h2>
-                <p>Expédition sous enveloppe bulle via Colissimo ou remise en main propre dans l'Hérault (Mèze, Frontignan, Montpellier).</p>
+                <p>Paiement 100% sécurisé via Stripe • Expédition sous enveloppe bulle via Colissimo ou remise en main propre dans l'Hérault (Mèze, Frontignan, Montpellier).</p>
             </section>
 
-            <div class="grid-2" style="grid-template-columns: 2fr 1fr; align-items: start;">
+            <div style="max-width: 900px; margin: 0 auto;">
                 <div class="grid-2">
                     ${productsHtml}
                 </div>
-
-                <aside class="card" style="border-color: var(--neon-cyan); position: sticky; top: 1.5rem;">
-                    <span class="badge badge-cyan">PANIER DE COMMANDE</span>
-                    <div style="margin: 1rem 0;">${cartItemsHtml}</div>
-                    ${state.cart.length > 0 ? `
-                        <div style="font-family: var(--font-mono); font-size: 0.9rem; margin-top: 1rem;">
-                            <div style="display: flex; justify-content: space-between; color: var(--text-muted);">
-                                <span>Sous-total :</span><span>${subTotal.toFixed(2)} €</span>
-                            </div>
-                            <div style="display: flex; justify-content: space-between; color: var(--text-muted); margin-bottom: 0.5rem;">
-                                <span>Port (Colissimo) :</span><span>${shipping.toFixed(2)} €</span>
-                            </div>
-                            <div style="display: flex; justify-content: space-between; color: #fff; font-size: 1.1rem; font-weight: 700; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 0.5rem;">
-                                <span>Total :</span><span>${grandTotal.toFixed(2)} €</span>
-                            </div>
-                        </div>
-                        <button id="checkout-btn" class="cta-btn" style="width: 100%; margin-top: 1.25rem; text-align: center;">
-                            Valider la commande →
-                        </button>
-                    ` : ''}
-                </aside>
             </div>
         `;
     }

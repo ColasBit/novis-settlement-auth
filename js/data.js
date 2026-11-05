@@ -107,32 +107,26 @@ const TUF_DATA = {
     shop: {
         badge: "BOUTIQUE OFFICIELLE • STOCK LIMITÉ (30 EX.)",
         title: "Commander l'édition physique & les Goodies",
-        shippingFlatRate: 5.00,
-        contactOrderEmail: "colo.colas34@gmail.com",
         products: [
             {
                 id: "tuf-tome1",
                 name: "The Ultimate Fight — Tome 1",
-                tag: "Light Novel (250 PAGES)",
-                desc: "Édition physique (tranche 20,5 mm), couverture et illustrations par Atelier Hibiki.",
-                price: 16.00,
+                tag: "ROMAN (206 PAGES)",
+                desc: "Édition physique (tranche 20,5 mm), couverture et illustrations par Atelier Hibiki. Frais de port inclus.",
+                price: 21.00,
+                isAvailable: true,
+                paymentLink: "https://buy.stripe.com/4gMbJ00wI3gxbKI1Pd8Vi00",
                 img: "assets/images/livre-ticket.jpg"
             },
             {
                 id: "tuf-pack-ultime",
                 name: "Pack Ultime (Livre + Goodies + Code VIP)",
                 tag: "OFFRE SALON",
-                desc: "Tome 1 dédicacé + Marque-page Ticket « Admit One » (avec code VIP) + Porte-clés acrylique + Sticker.",
-                price: 22.00,
+                desc: "Tome 1 dédicacé + Marque-page Ticket « Admit One » + Porte-clés acrylique + Tapis de souris.",
+                price: 34.00,
+                isAvailable: false, 
+                paymentLink: "https://buy.stripe.com/7sYcN4cfqg3j6qogK78Vi01",
                 img: "assets/images/goodies-pack.jpg"
-            },
-            {
-                id: "tuf-mousepad",
-                name: "Tapis de souris Néon TUF",
-                tag: "MERCH EXCLUSIF",
-                desc: "Tapis de souris sombre avec logo vectoriel néon et crochets de visée dans les angles.",
-                price: 12.00,
-                img: "assets/images/tapis-setup.jpg"
             }
         ]
     }
