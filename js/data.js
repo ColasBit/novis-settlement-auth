@@ -115,7 +115,7 @@ const TUF_DATA = {
                 desc: "Édition physique (tranche 20,5 mm), couverture et illustrations par Atelier Hibiki. Frais de port inclus.",
                 price: 21.00,
                 isAvailable: true,
-                paymentLink: "https://buy.stripe.com/4gMbJ00wI3gxbKI1Pd8Vi00",
+                paymentLink: "https://buy.stripe.com/8x24gy0wI6sJ5mk79x8Vi02",
                 img: "assets/images/livre-ticket.jpg"
             },
             {
