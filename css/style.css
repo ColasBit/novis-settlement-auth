@@ -1,0 +1,370 @@
+:root {
+    /* Fonds allégés (Gris perle et Blanc cassé pour sortir du full dark) */
+    --bg-dark: #f0f2f5;
+    --bg-panel: #ffffff;
+
+    /* Couleurs Officielles du Logo TUF */
+    --tuf-blue: #0E00DF;
+    --tuf-red: #AC0000;
+
+    /* Palette Hiro */
+    --hiro-hair: #7B6A50;
+    --hiro-outfit: #848AE2; 
+    --hiro-skin: #FFF7F0;
+
+    /* Palette Ituiis */
+    --ituiis-hair: #94554D;
+    --ituiis-outfit-red: #A93F31;
+    --ituiis-skin: #FEF6EC;
+
+    /* UI & Typographie */
+    --terminal-green: #00ff66;
+    --text-main: #1e293b; /* Gris très foncé pour le texte principal */
+    --text-muted: #475569; /* Gris moyen pour le texte secondaire */
+    --border-light: rgba(0, 0, 0, 0.08); /* Bordures subtiles */
+    
+    --font-sans: 'Montserrat', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    position: relative;
+}
+
+/* Crochets d'angle façon tapis de souris TUF */
+.corner {
+    position: fixed;
+    width: 36px;
+    height: 36px;
+    border-color: var(--tuf-red);
+    border-style: solid;
+    pointer-events: none;
+    z-index: 100;
+    /* Ombre rouge discrète */
+    box-shadow: 0 0 8px rgba(172, 0, 0, 0.2); 
+}
+.corner-tl { top: 12px; left: 12px; border-width: 4px 0 0 4px; }
+.corner-tr { top: 12px; right: 12px; border-width: 4px 4px 0 0; }
+.corner-bl { bottom: 12px; left: 12px; border-width: 0 0 4px 4px; }
+.corner-br { bottom: 12px; right: 12px; border-width: 0 4px 4px 0; }
+
+/* Header */
+.site-header {
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto 2rem auto;
+    text-align: center;
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: 1.5rem;
+}
+
+.logo-wrapper {
+    display: inline-block;
+    cursor: pointer;
+    margin-bottom: 1.2rem;
+}
+
+/* Navigation */
+.main-nav {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.nav-btn {
+    background: var(--bg-panel);
+    color: var(--text-main);
+    border: 1px solid var(--border-light);
+    padding: 0.6rem 1.2rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.nav-btn:hover, .nav-btn.active {
+    border-color: var(--tuf-red);
+    color: var(--tuf-red);
+    background-color: rgba(172, 0, 0, 0.03);
+}
+
+.nav-vip {
+    border-color: rgba(14, 0, 223, 0.2);
+    color: var(--tuf-blue);
+}
+
+.nav-vip.active, .nav-vip:hover {
+    border-color: var(--tuf-blue);
+    background-color: rgba(14, 0, 223, 0.03);
+    color: var(--tuf-blue);
+}
+
+/* Conteneur principal */
+.app-container {
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+    flex: 1;
+}
+
+/* Composants génériques */
+.hero-box, .card {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    padding: 1.75rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+.hero-dilemma {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-main);
+    border-left: 4px solid var(--tuf-red);
+    padding-left: 1rem;
+    margin-bottom: 1rem;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.25rem;
+}
+
+/* Badges utilisant les couleurs Ituiis et Hiro */
+.badge {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 3px;
+    background: rgba(169, 63, 49, 0.1); /* ituiis-outfit-red */
+    color: var(--ituiis-outfit-red);
+    border: 1px solid rgba(169, 63, 49, 0.3);
+    margin-bottom: 0.75rem;
+}
+
+.badge-cyan {
+    background: rgba(132, 138, 226, 0.1); /* hiro-outfit */
+    color: var(--tuf-blue);
+    border-color: rgba(14, 0, 223, 0.3);
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--tuf-blue);
+}
+
+h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+}
+
+p {
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+}
+
+/* Boutons d'action */
+.cta-btn {
+    display: inline-block;
+    background: var(--tuf-red);
+    color: #fff;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.cta-btn:hover {
+    transform: translateY(-2px);
+    background-color: #920000; /* Légèrement plus foncé */
+    box-shadow: 0 4px 12px rgba(172, 0, 0, 0.3);
+}
+
+/* Terminal Zone Restreinte (Conservé en mode hacker sombre) */
+.terminal-window {
+    background: #050508;
+    border: 1px solid var(--terminal-green);
+    border-radius: 6px;
+    padding: 2rem;
+    font-family: var(--font-mono);
+    color: var(--terminal-green);
+    box-shadow: 0 0 20px rgba(0, 255, 102, 0.12);
+}
+
+.terminal-prompt {
+    margin-bottom: 1.2rem;
+    color: var(--terminal-green);
+}
+
+.terminal-form {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.terminal-input {
+    background: #000;
+    border: 1px solid var(--terminal-green);
+    color: var(--terminal-green);
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    padding: 0.6rem 1rem;
+    width: 220px;
+    text-transform: uppercase;
+    outline: none;
+}
+
+.terminal-btn {
+    background: var(--terminal-green);
+    color: #000;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    border: none;
+    padding: 0.65rem 1.2rem;
+    cursor: pointer;
+}
+
+.canvas-box {
+    margin: 1.5rem 0;
+    text-align: center;
+}
+
+#decrypt-canvas {
+    background: #070a0e;
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    border-radius: 4px;
+    max-width: 100%;
+}
+
+/* Footer */
+.site-footer {
+    max-width: 1100px;
+    width: 100%;
+    margin: 3rem auto 0 auto;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-light);
+    text-align: center;
+    font-size: 0.85rem;
+}
+
+.footer-sub {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+}
+
+/* --- LOGO HEADER EN LIGNE --- */
+.header-logo-img {
+    max-height: 85px;
+    width: auto;
+    max-width: 90%;
+    display: block;
+    margin: 0 auto;
+    /* Halo discret adapté sur fond clair */
+    filter: drop-shadow(0 4px 6px rgba(172, 0, 0, 0.15)) drop-shadow(0 2px 4px rgba(14, 0, 223, 0.1));
+    transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.logo-wrapper:hover .header-logo-img {
+    transform: scale(1.03);
+    filter: drop-shadow(0 6px 12px rgba(172, 0, 0, 0.2)) drop-shadow(0 4px 8px rgba(14, 0, 223, 0.15));
+}
+
+/* --- VITRINE DU LIVRE (ACCUEIL) --- */
+.book-showcase {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.book-showcase-img {
+    width: 100%;
+    max-width: 280px;
+    border-radius: 6px;
+    border: 1px solid rgba(172, 0, 0, 0.2);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.book-showcase-img:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(14, 0, 223, 0.2);
+}
+
+/* --- GALERIE GOODIES & CARTES IMAGES --- */
+.media-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.media-card:hover {
+    border-color: rgba(14, 0, 223, 0.4);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(14, 0, 223, 0.1);
+}
+
+.media-card-img {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    border-bottom: 1px solid var(--border-light);
+    background: #f8fafc;
+}
+
+.media-card-body {
+    padding: 1.25rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* --- LECTEUR VIDÉO TEASER --- */
+.video-container {
+    margin: 1.5rem 0;
+    border: 2px solid var(--tuf-red);
+    border-radius: 6px;
+    overflow: hidden;
+    background: #000; /* Reste noir pour le contraste vidéo */
+    box-shadow: 0 8px 24px rgba(172, 0, 0, 0.15);
+}
+
+.teaser-video {
+    width: 100%;
+    max-height: 480px;
+    display: block;
+}
