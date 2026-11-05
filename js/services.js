@@ -38,9 +38,13 @@ class SecurityService {
 
 // Pré-calcul dynamique des hashes autorisés au chargement pour garantir la correspondance
 TUF_DATA.vip.allowedHashes = [
-    SecurityService.computeHash("BR-5701"),
-    SecurityService.computeHash("IT-8642"),
-    SecurityService.computeHash("TU-2026")
+    SecurityService.computeHash("AL-0591"),
+    SecurityService.computeHash("MA-5601"),
+    SecurityService.computeHash("AL-1123"),
+    SecurityService.computeHash("ST-6382"),
+    SecurityService.computeHash("HE-7719"),
+    SecurityService.computeHash("RO-0473")
+
 ];
 
 /**
@@ -83,14 +87,6 @@ class DecryptCanvasService {
                 width / 2,
                 32
             );
-
-            // Affichage du nombre aléatoire 1-9999
-            ctx.font = '700 42px "JetBrains Mono", monospace';
-            ctx.fillStyle = progress < 1 ? '#00e5ff' : '#00ff66';
-            ctx.shadowColor = progress < 1 ? '#00e5ff' : '#00ff66';
-            ctx.shadowBlur = 12;
-            ctx.fillText(`#${formattedNum}`, width / 2, 85);
-            ctx.shadowBlur = 0;
 
             // Barre de progression
             ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
