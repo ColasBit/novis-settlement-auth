@@ -4,11 +4,11 @@
 const TUF_DATA = {
     home: {
         badge: "LIGHT NOVEL FRANÇAIS • TOME 1 DISPONIBLE",
-        dilemma: "« Si tu perdais la personne que tu aimes le plus, et que la science te permettait de la ramener au prix de la fin du monde... tu le ferais ? »",
+        dilemma: "« Un Héros condamné à être Libre »",
         synopsis: "Survivre à la guerre est difficile. Survivre à son propre auteur est un cauchemar. Plongez dans un thriller de science-fiction psychologique et méta-narratif où chaque choix déchire un peu plus la réalité.",
         bookSpecs: {
             title: "The Ultimate Fight — Tome 1",
-            details: "206 pages • 4 Actes, 27 Chapitres • Tranche 20,5 mm (Papier bouffant main de 2)",
+            details: "250 pages • 4 Actes, 27 Chapitres",
             illustrator: "Couverture & Illustrations internes : Atelier Hibiki",
             priceSolo: "16,00 € (Livre seul)",
             pricePack: "Packs Salon disponibles (Livre + Ticket Admit One + Porte-clés / Tapis de souris)",
@@ -16,21 +16,24 @@ const TUF_DATA = {
             coverAlt: "Tome 1 The Ultimate Fight illustré par Atelier Hibiki avec son marque-page Ticket"
         },
         events: [
-            { name: "Salon du Livre Indépendant (Books & Beer)", city: "Montpellier (Le Réservoir)", info: "Édition auteurs auto-édités — Dédicaces & Packs" },
-            { name: "Festival Sakura / Mangamania", city: "Béziers & Montpellier", info: "Rencontres associatives Manga & Pop-Culture" },
-            { name: "Salons littéraires locaux", city: "Bassin de Thau (Mèze, Frontignan, Pignan)", info: "Vente directe & dédicaces" }
+            { name: "Aucun pour le moment", city: "", info: "" }
+            //{ name: "Salon du Livre Indépendant (Books & Beer)", city: "Montpellier (Le Réservoir)", info: "Édition auteurs auto-édités — Dédicaces & Packs" },
+            //{ name: "Festival Sakura / Mangamania", city: "Béziers & Montpellier", info: "Rencontres associatives Manga & Pop-Culture" },
+            //{ name: "Salons littéraires locaux", city: "Bassin de Thau (Mèze, Frontignan, Pignan)", info: "Vente directe & dédicaces" }
         ]
     },
 
     manifesto: {
         badge: "MANIFESTE DU MAKER • 0% IA GÉNÉRATIVE",
         mainTitle: "L'artisanat humain face aux algorithmes",
-        intro: "The Ultimate Fight refuse les contrats d'édition classiques et l'intelligence artificielle générative. Chaque ligne de texte, chaque coup de crayon et chaque image d'animation sont le fruit d'un travail 100% humain.",
+        intro: "The Ultimate Fight refuse les contrats d'édition classiques et l'intelligence artificielle générative quand des humains ont fait des études en art. Chaque ligne de texte, chaque coup de crayon et chaque image d'animation sont le fruit d'un travail 100% humain.",
         
         videoSection: {
             badge: "ANIMATION 2D FRAME-BY-FRAME & DOUBLAGE",
             title: "Teaser Officiel (20 secondes)",
-            desc: "Réalisé image par image à la main par l'animateur japonais Numanne et doublé par de vrais comédiens.",
+            desc: "Réalisé image par image à la main par l'animateur japonais Numanne et doublé par le comédien Jean François.",
+            linkVoice: "https://fr.fiverr.com/jeffustudio?source=inbox",
+            linkAnime:  "https://vgen.co/Numanne",
             videoSrc: "assets/video/teaser-tuf.mp4",
             posterImg: "assets/images/livre-ticket.jpg"
         },
@@ -43,12 +46,12 @@ const TUF_DATA = {
                     {
                         tag: "FINANCEMENT ULULE",
                         title: "Indépendance financière validée",
-                        desc: "Campagne financée à plus de 200% de l'objectif initial..."
+                        desc: "Campagne financée à plus de 200% de l'objectif initial !"
                     },
                     {
                         tag: "ILLUSTRATION TRADITIONNELLE",
                         title: "Collaboration avec Atelier Hibiki",
-                        desc: "Direction artistique pensée sur mesure pour Hiro..."
+                        desc: "Direction artistique pensée sur mesure pour le Présenteur."
                     }
                 ]
             },
@@ -65,7 +68,7 @@ const TUF_DATA = {
                     {
                         tag: "COLLECTION COMPLÈTE",
                         title: "Les Goodies Officiels",
-                        desc: "Logos vectoriels...",
+                        desc: "Logo de l'univers sur tapis de souris, stickers et marques page. Porte-clé représentant d'Ituiis",
                         img: "assets/images/goodies-pack.jpg"
                     },
                     {
@@ -85,6 +88,18 @@ const TUF_DATA = {
                         title: "Crédit",
                         desc: "Dessinateur Freelance, Atelier Hibiki a su montrer ses compétences...",
                         img: "assets/images/Illu1.jpg"
+                    },
+                    {
+                        tag: "Ituiis",
+                        title: "Crédit",
+                        desc: "... Encore...",
+                        img: "assets/images/Illu2.jpg"
+                    },
+                    {
+                        tag: "IT-00-Z",
+                        title: "Crédit",
+                        desc: "... Et encore...",
+                        img: "assets/images/Illu4.jpg"
                     }
                 ]
             }
@@ -94,7 +109,7 @@ const TUF_DATA = {
     lore: {
         badge: "ARCHIVES PUBLIQUES DE L'EMPIRE",
         title: "Système d'identification & Protagonistes",
-        matriculeRule: "Note de classification : Dans l'armée impériale, le matricule d'un soldat commence systématiquement par les deux premières lettres de son prénom suivies de son numéro d'enregistrement (ex. Brulius = BR-57, Ituiis = IT-86). À ne pas confondre avec l'acronyme de corps d'armée « IT » (Soldat d'Infanterie Tactique).",
+        matriculeRule: "Note de classification : Dans l'armée impériale, le matricule d'un soldat commence systématiquement par les deux premières lettres de son prénom suivies de son numéro d'enregistrement (ex. Brulius = BR-57, Ituiis = IT-86).",
         sections: [
             {
                 title: "",
@@ -102,8 +117,8 @@ const TUF_DATA = {
                 items: [
                     { name: "Hiro", role: "Protagoniste central", desc: "Pris au piège d'un conflit qui dépasse les frontières de son monde et de sa propre écriture." },
                     { name: "Ituiis (Matricule IT-86)", role: "Soldate Impériale", desc: "Combattante d'élite marquée par la rigueur militaire de l'Empire et les fractures du front." },
-                    { name: "Alton", role: "Scientifique", desc: "Confronté au dilemme ultime : jusqu'où peut-on tordre les lois scientifiques et morales par amour ?" },
-                    { name: "Brulius (Matricule BR-57)", role: "Soldat de l'Empire", desc: "Vétéran enregistré sous le code BR-57 dans les registres d'opérations impériales." }
+                    { name: "Alton", role: "Scientifique ? ", desc: "Confronté au dilemme ultime : jusqu'où peut-on tordre les lois scientifiques et morales par amour ?" },
+                    { name: "Brulius (Matricule BR-57)", role: "Garde du corps de l'Empereur", desc: "Vétéran enregistré sous le code BR-57 dans les registres d'opérations impériales." }
                 ]
             }
         ]
@@ -146,7 +161,7 @@ const TUF_DATA = {
                 id: "tuf-tome1",
                 name: "The Ultimate Fight — Tome 1",
                 tag: "ROMAN (250 PAGES)",
-                desc: "Édition physique (tranche 20,5 mm), couverture et illustrations par Atelier Hibiki. Frais de port inclus.",
+                desc: "Édition physique. Frais de port inclus.",
                 price: 21.00,
                 isAvailable: true,
                 paymentLink: "https://buy.stripe.com/8x24gy0wI6sJ5mk79x8Vi02",
@@ -156,7 +171,7 @@ const TUF_DATA = {
                 id: "tuf-pack-ultime",
                 name: "Pack Ultime (Livre + Goodies + Code VIP)",
                 tag: "OFFRE SALON",
-                desc: "Tome 1 dédicacé + Marque-page Ticket « Admit One » + Porte-clés acrylique + Tapis de souris.",
+                desc: "Tome 1 + Marque-page Ticket + Tapis de souris.",
                 price: 34.00,
                 isAvailable: false, 
                 paymentLink: "https://buy.stripe.com/7sYcN4cfqg3j6qogK78Vi01",

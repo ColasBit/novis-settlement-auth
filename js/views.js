@@ -66,6 +66,9 @@ const Views = {
             ${data.videoSection.badge ? `<span class="badge">${data.videoSection.badge}</span>` : ''}
             ${data.videoSection.title ? `<h3>${data.videoSection.title}</h3>` : ''}
             ${data.videoSection.desc ? `<p style="margin-bottom: 0;">${data.videoSection.desc}</p>` : ''}
+            ${data.videoSection.linkVoice ? `<a href="${data.videoSection.linkVoice}" target="_blank" style="margin-bottom: 0;">Jean François</a>` : ''}
+            ${data.videoSection.linkAnime ? `<a href="${data.videoSection.linkAnime}" target="_blank" style="margin-bottom: 0;">Numanne</a>` : ''}
+
         ` : '';
 
         const sectionsHtml = (data.sections && data.sections.length > 0) ? data.sections.map(section => {
@@ -256,7 +259,7 @@ const Views = {
             <section class="hero-box">
                 ${data.badge ? `<span class="badge">${data.badge}</span>` : ''}
                 ${data.title ? `<h2>${data.title}</h2>` : ''}
-                <p>Paiement 100% sécurisé via Stripe • Expédition sous enveloppe bulle via Colissimo ou remise en main propre dans l'Hérault (Mèze, Frontignan, Montpellier).</p>
+                <p>Paiement 100% sécurisé via Stripe • Expédition en France Métropolitaine.</p>
             </section>
 
             ${productsHtml ? `
