@@ -160,7 +160,7 @@ const Views = {
         if (!state.vipUnlocked) {
             return `
                 <section class="terminal-window">
-                    <p class="terminal-prompt">> TERMINAL IMPÉRIAL TUF-OS v2.6</p>
+                    <p class="terminal-prompt">> TERMINAL IMPÉRIAL v2.6</p>
                     ${data.promptText ? `<p class="terminal-prompt">> ${data.promptText}</p>` : ''}
                     <form id="vip-form" class="terminal-form">
                         <input

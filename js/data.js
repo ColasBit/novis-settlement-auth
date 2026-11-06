@@ -31,7 +31,7 @@ const TUF_DATA = {
         
         videoSection: {
             badge: "ANIMATION 2D FRAME-BY-FRAME & DOUBLAGE",
-            title: "Teaser Officiel (20 secondes)",
+            title: "Teaser Officiel (Arrive Prochainement)",
             desc: "Réalisé image par image à la main par l'animateur japonais Numanne et doublé par le comédien Jean François.",
             linkVoice: "https://fr.fiverr.com/jeffustudio?source=inbox",
             linkAnime:  "https://vgen.co/Numanne",
@@ -127,7 +127,7 @@ const TUF_DATA = {
 
     vip: {
         promptText: "Accès restreint. Veuillez entrer votre code d'accréditation ou votre matricule impérial (Format : XX-XXXX).",
-        hintText: "Indice : Le code se trouve au dos de votre ticket « Admit One » (Codes de démonstration actifs : BR-5701, IT-8642, TU-2026).",
+        hintText: "",
         allowedHashes: [""],
         secretArchives: {
             sections: [
