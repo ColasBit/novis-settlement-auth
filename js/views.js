@@ -87,6 +87,7 @@ const Views = {
                                     ${item.tag ? `<span class="badge badge-cyan">${item.tag}</span>` : ''}
                                     ${item.title ? `<h3>${item.title}</h3>` : ''}
                                     ${item.desc ? `<p>${item.desc}</p>` : ''}
+                                    ${item.link ? `<a href="${item.link}" target="_blank" > La Campagne Ulule</a>` : ''}
                                 </div>
                             </div>
                         </article>
@@ -97,6 +98,7 @@ const Views = {
                             ${item.tag ? `<span class="badge">${item.tag}</span>` : ''}
                             ${item.title ? `<h3>${item.title}</h3>` : ''}
                             ${item.desc ? `<p>${item.desc}</p>` : ''}
+                            ${item.link ? `<a href="${item.link}" target="_blank" > La Campagne Ulule</a>` : ''}
                         </div>
                     `;
                 }

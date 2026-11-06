@@ -47,7 +47,8 @@ const TUF_DATA = {
                     {
                         tag: "FINANCEMENT ULULE",
                         title: "Indépendance financière validée",
-                        desc: "Campagne financée à plus de 200% de l'objectif initial !"
+                        desc: "Campagne financée à plus de 200% de l'objectif initial !",
+                        link: "https://fr.ulule.com/theultimatefight/"
                     },
                     {
                         tag: "ILLUSTRATION TRADITIONNELLE",
