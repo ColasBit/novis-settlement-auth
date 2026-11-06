@@ -11,7 +11,7 @@ const TUF_DATA = {
             title: "The Ultimate Fight — Tome 1",
             details: "250 pages • 4 Actes, 27 Chapitres",
             illustrator: "Couverture & Illustrations internes : Atelier Hibiki",
-            priceSolo: "16,00 € (Livre seul)",
+            priceSolo: "16,00 €",
             pricePack: "Packs Salon disponibles (Livre + Ticket Admit One + Porte-clés / Tapis de souris)",
             coverImage: "assets/images/livre-ticket.jpg",
             coverAlt: "Tome 1 The Ultimate Fight illustré par Atelier Hibiki avec son marque-page Ticket"
@@ -172,7 +172,7 @@ const TUF_DATA = {
                 tag: "ROMAN (250 PAGES)",
                 desc: "Édition physique. Frais de port inclus.",
                 price: 21.00,
-                isAvailable: true,
+                isAvailable: false,
                 paymentLink: "https://buy.stripe.com/8x24gy0wI6sJ5mk79x8Vi02",
                 img: "assets/images/livre-ticket.jpg"
             },

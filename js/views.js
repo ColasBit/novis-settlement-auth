@@ -40,7 +40,7 @@ const Views = {
                             class="book-showcase-img"
                         >
                         <button class="nav-btn nav-vip" data-nav="vip">
-                            J'ai un code Ticket « Admit One » →
+                            J'ai un matricule personnel →
                         </button>
                     </div>
                 </div>
