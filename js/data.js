@@ -7,6 +7,7 @@ const TUF_DATA = {
         dilemma: "« Un Héros condamné à être Libre »",
         synopsis: "Survivre à la guerre est difficile. Survivre à son propre auteur est un cauchemar. Plongez dans un thriller de science-fiction psychologique et méta-narratif où chaque choix déchire un peu plus la réalité.",
         bookSpecs: {
+            logoImg: "assets/images/dessin6.png",
             title: "The Ultimate Fight — Tome 1",
             details: "250 pages • 4 Actes, 27 Chapitres",
             illustrator: "Couverture & Illustrations internes : Atelier Hibiki",
@@ -56,7 +57,7 @@ const TUF_DATA = {
                 ]
             },
             {
-                title: "Le Merchandising & l'Objet Livre (Création Inkscape & Scribus)",
+                title: "Le Merchandising & l'Objet Livre",
                 grid: "grid-3",
                 items: [
                     {
@@ -147,6 +148,14 @@ const TUF_DATA = {
                             { title: "Couverture Officielle & Ticket (HD)", file: "assets/images/livre-ticket.jpg" },
                             { title: "Logo Vectoriel Ultimate Fight", file: "assets/images/logo-inline.png" }
                         ]}
+                    ]
+                },
+                {
+                    title: "Prêt(e) pour la suite ?",
+                    grid: "grid-2",
+                    items: [
+                        { badge: "Octobre 2027", title: "The Ultimate Fight - Tome 2", details: "Rendez vous l'an prochain pour la sortie du nouveau tome !", img : "assets/images/dessin2.png" },
+                        
                     ]
                 }
             ]

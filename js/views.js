@@ -16,10 +16,13 @@ const Views = {
                 
                 <div class="grid-2" style="margin-top: 2rem; align-items: center;">
                     <div>
+                        <!-- Le logo s'affichera ici dynamiquement s'il est renseigné dans data.js -->
+                        ${data.bookSpecs.logoImg ? `<img src="${data.bookSpecs.logoImg}" alt="Logo The Ultimate Fight" style="max-width: 300px; margin-bottom: 1rem; display: block; margin-left: 17%;">` : ''}
+                        
                         <h2>${data.bookSpecs.title}</h2>
                         <p>${data.bookSpecs.details}</p>
                         <p><strong>${data.bookSpecs.illustrator}</strong></p>
-                        <p style="color: #fff; margin: 1rem 0;">
+                        <p style="color: var(--text-main); margin: 1rem 0;">
                             • ${data.bookSpecs.priceSolo}<br>
                             • ${data.bookSpecs.pricePack}
                         </p>
@@ -184,6 +187,7 @@ const Views = {
 
             const itemsHtml = section.items.map(item => `
                 <div class="card" style="${item.code ? 'border-color: var(--terminal-green);' : ''}">
+                    ${item.img ? `<img src="${item.img}" alt="${item.title || ''}" style="width: 25%; border-radius: 4px; margin-bottom: 1rem; display: block;">` : ''}
                     ${item.code ? `<span class="badge" style="color: var(--terminal-green); border-color: var(--terminal-green); background: rgba(0,255,102,0.1);">${item.code}</span>` : ''}
                     ${item.badge ? `<span class="badge badge-cyan">${item.badge}</span>` : ''}
                     ${item.title ? `<h3>${item.title}</h3>` : ''}
