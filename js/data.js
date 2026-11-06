@@ -117,8 +117,8 @@ const TUF_DATA = {
                 items: [
                     { name: "Hiro", role: "Protagoniste central", desc: "Pris au piège d'un conflit qui dépasse les frontières de son monde et de sa propre écriture." },
                     { name: "Ituiis (Matricule IT-86)", role: "Soldate Impériale", desc: "Combattante d'élite marquée par la rigueur militaire de l'Empire et les fractures du front." },
-                    { name: "Alton", role: "Scientifique ? ", desc: "Confronté au dilemme ultime : jusqu'où peut-on tordre les lois scientifiques et morales par amour ?" },
-                    { name: "Brulius (Matricule BR-57)", role: "Garde du corps de l'Empereur", desc: "Vétéran enregistré sous le code BR-57 dans les registres d'opérations impériales." }
+                    { name: "Alton", role: "Scientifique (?) ", desc: "Confronté au dilemme ultime : jusqu'où peut-on tordre les lois scientifiques et morales par amour ?" },
+                    { name: "Brulius (Matricule BR-57)", role: "Garde du corps de l'Empereur", desc: "Vétéran enregistré sous le code BR-57 dans les registres d'opérations impériales. Il s'est personnellement occupé de d'Edward 37 après la mort de son père." }
                 ]
             }
         ]
@@ -175,7 +175,7 @@ const TUF_DATA = {
                 price: 34.00,
                 isAvailable: false, 
                 paymentLink: "https://buy.stripe.com/7sYcN4cfqg3j6qogK78Vi01",
-                img: "assets/images/goodies-pack.jpg"
+                img: "assets/images/goodies-et-livre.jpg"
             }
         ]
     }
